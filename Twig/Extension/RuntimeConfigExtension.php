@@ -33,13 +33,21 @@ class RuntimeConfigExtension extends AbstractExtension
         ];
     }
 
+    /**
+     * Returns the name of the extension.
+     *
+     * @return string The extension name
+     */
+    public function getName()
+    {
+        return 'runtime_config';
+    }
+
     public function getRuntimeConfig($name)
     {
         try {
             return $this->runtimeConfig->get($name);
-        } catch (ParameterNotFoundException $e) {
-            return null;
-        } catch (\InvalidArgumentException $e) {
+        } catch (ParameterNotFoundException|\InvalidArgumentException $e) {
             return null;
         }
     }
